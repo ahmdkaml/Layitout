@@ -1,10 +1,17 @@
-<div class="card">
-  <div class="card-header">
-    <h2>Sample Invoiced Document</h2>
-    <span class="status-pill">Pending</span>
+<main class="app-container">
+  <!-- Button emits 'request_color' action on click -->
+  <button
+    id="btn-color-box"
+    class="layitout-btn"
+    data-emit="request_color">
+    Color Box
+  </button>
+
+  <!-- Box listens for mutations on channel 'box_color' -->
+  <div
+    id="box-target"
+    class="layitout-box"
+    data-listen="box_color">
+    <span class="box-text">Default Box</span>
   </div>
-  <p>This layout is rendered inside the Layitout sandbox preview container.</p>
-  <div class="action-bar">
-    <button class="primary-btn">Process Layout</button>
-  </div>
-</div>
+</main>
