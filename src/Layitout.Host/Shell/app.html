@@ -3,74 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Layitout</title>
+  <title>Layitout Studio</title>
   <link rel="stylesheet" href="app.css" />
 </head>
 <body>
   <div id="layitout-app">
+    <!-- Top Header -->
     <header class="app-header">
-      <div class="logo">Layitout <span class="badge">POC v0.1</span></div>
-      <div class="header-status">Renderer: Native OS WebView</div>
+      <div class="logo">Layitout <span class="badge">Event Studio</span></div>
+      <div class="header-status">Event Binding Mode: Visual / Declarative</div>
     </header>
 
+    <!-- Main Studio Split View -->
     <main class="app-body">
+      <!-- Left: Workspace & Event Management Panels -->
       <aside class="workspace-panel" id="workspacePanel">
-        <div class="panel-header">
-          <h2>Workspace</h2>
-        </div>
-
         <div class="workspace-tabs">
-          <button class="tab-btn active" data-tab="elements">Elements</button>
-          <button class="tab-btn" data-tab="events">Emitters & Listeners</button>
-          <button class="tab-btn" data-tab="schema">Data Schema</button>
-          <button class="tab-btn" data-tab="backend">Backend API</button>
+          <button class="tab-btn active" data-tab="binding">Event Wiring</button>
+          <button class="tab-btn" data-tab="graph">Flow Map</button>
         </div>
 
-        <div class="tab-content" id="tabElements">
+        <!-- Tab 1: Component Inspector & Event Configuration -->
+        <div class="tab-content" id="tabBinding">
+          <!-- Discovered Components Picker -->
           <section class="config-section">
-            <h3>Component Tree</h3>
-            <p class="section-hint">Structure for future element configuration and visual binding.</p>
-            <ul class="element-tree">
-              <li>📄 Document Root (#app)
-                <ul>
-                  <li>📦 Header (#header)</li>
-                  <li>📦 Content (#content)</li>
-                  <li>🔘 Action Button (#btn-submit)</li>
-                </ul>
-              </li>
-            </ul>
+            <div class="section-title-row">
+              <h3>Discovered Components</h3>
+              <button id="btnScanDom" class="btn-xs">Rescan UI</button>
+            </div>
+            <p class="section-hint">Select a component to inspect or attach events/listeners:</p>
+            <div id="componentList" class="component-pill-list">
+              <!-- Dynamically populated -->
+            </div>
+          </section>
+
+          <!-- Active Element Binding Card -->
+          <section class="config-section" id="bindingSection">
+            <h3 id="selectedTargetHeader">Active: #btn-generate-puzzle</h3>
+
+            <!-- Emitters Form -->
+            <div class="binding-group">
+              <label class="group-title">⚡ Emitter (Dispatches to Channel)</label>
+              <div class="form-row">
+                <input type="text" id="emitterInput" class="form-input" placeholder="e.g. event_generate_puzzle" />
+                <button id="btnSaveEmitter" class="btn-action">Attach Emitter</button>
+              </div>
+              <div class="current-binding" id="activeEmitterDisplay">Emitter: <em>None</em></div>
+            </div>
+
+            <!-- Listeners Form -->
+            <div class="binding-group">
+              <label class="group-title">👂 Listener (Subscribes to Channel)</label>
+              <div class="form-row">
+                <input type="text" id="listenerInput" class="form-input" placeholder="e.g. puzzle_generated" />
+                <button id="btnSaveListener" class="btn-action">Attach Listener</button>
+              </div>
+              <div class="current-binding" id="activeListenerDisplay">Listener: <em>None</em></div>
+            </div>
           </section>
         </div>
 
-        <div class="tab-content hidden" id="tabEvents">
+        <!-- Tab 2: Visual Event Relationship Flow -->
+        <div class="tab-content hidden" id="tabGraph">
           <section class="config-section">
-            <h3>Event Routing (Future Scope)</h3>
-            <p class="section-hint">Declared emitters and listeners mapped to backend channels.</p>
-          </section>
-        </div>
-
-        <div class="tab-content hidden" id="tabSchema">
-          <section class="config-section">
-            <h3>Data Contracts</h3>
-            <p class="section-hint">Schema models and type definitions for state reconciliation.</p>
-          </section>
-        </div>
-
-        <div class="tab-content hidden" id="tabBackend">
-          <section class="config-section">
-            <h3>Backend Protocol Config</h3>
-            <p class="section-hint">Target endpoint and IPC channel dispatcher bindings.</p>
+            <h3>Event Relationship Graph</h3>
+            <p class="section-hint">Active UI-to-Channel relationship matrix:</p>
+            <div id="relationshipFlow" class="flow-container">
+              <!-- Dynamically rendered visual cards -->
+            </div>
           </section>
         </div>
       </aside>
 
+      <!-- Resizable Splitter Handle -->
       <div class="resizer" id="dragResizer"></div>
 
+      <!-- Right: Sandboxed HTML/CSS Preview Canvas -->
       <section class="preview-panel" id="previewPanel">
         <div class="preview-toolbar">
-          <span class="preview-title">HTML / CSS Preview Area</span>
+          <span class="preview-title">Sandboxed UI Canvas</span>
           <div class="preview-actions">
-            <button id="btnReloadPreview" class="btn-sm">Reload Preview</button>
+            <button id="btnReloadPreview" class="btn-sm">Reload Canvas</button>
           </div>
         </div>
         <div class="preview-viewport">
