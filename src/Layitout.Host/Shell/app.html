@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layitout</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div id="layitout-app">
+    <header class="app-header">
+      <div class="logo">Layitout <span class="badge">POC v0.1</span></div>
+      <div class="header-status">Renderer: Native OS WebView</div>
+    </header>
+
+    <main class="app-body">
+      <aside class="workspace-panel" id="workspacePanel">
+        <div class="panel-header">
+          <h2>Workspace</h2>
+        </div>
+
+        <div class="workspace-tabs">
+          <button class="tab-btn active" data-tab="elements">Elements</button>
+          <button class="tab-btn" data-tab="events">Emitters & Listeners</button>
+          <button class="tab-btn" data-tab="schema">Data Schema</button>
+          <button class="tab-btn" data-tab="backend">Backend API</button>
+        </div>
+
+        <div class="tab-content" id="tabElements">
+          <section class="config-section">
+            <h3>Component Tree</h3>
+            <p class="section-hint">Structure for future element configuration and visual binding.</p>
+            <ul class="element-tree">
+              <li>📄 Document Root (#app)
+                <ul>
+                  <li>📦 Header (#header)</li>
+                  <li>📦 Content (#content)</li>
+                  <li>🔘 Action Button (#btn-submit)</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="tab-content hidden" id="tabEvents">
+          <section class="config-section">
+            <h3>Event Routing (Future Scope)</h3>
+            <p class="section-hint">Declared emitters and listeners mapped to backend channels.</p>
+          </section>
+        </div>
+
+        <div class="tab-content hidden" id="tabSchema">
+          <section class="config-section">
+            <h3>Data Contracts</h3>
+            <p class="section-hint">Schema models and type definitions for state reconciliation.</p>
+          </section>
+        </div>
+
+        <div class="tab-content hidden" id="tabBackend">
+          <section class="config-section">
+            <h3>Backend Protocol Config</h3>
+            <p class="section-hint">Target endpoint and IPC channel dispatcher bindings.</p>
+          </section>
+        </div>
+      </aside>
+
+      <div class="resizer" id="dragResizer"></div>
+
+      <section class="preview-panel" id="previewPanel">
+        <div class="preview-toolbar">
+          <span class="preview-title">HTML / CSS Preview Area</span>
+          <div class="preview-actions">
+            <button id="btnReloadPreview" class="btn-sm">Reload Preview</button>
+          </div>
+        </div>
+        <div class="preview-viewport">
+          <iframe id="previewFrame" title="User Application Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
