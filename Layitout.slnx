@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Layitout.Core/Layitout.Core.csproj" />
+    <Project Path="src/Layitout.Host/Layitout.Host.csproj" />
+    <Project Path="src/Layitout.Renderer.Photino/Layitout.Renderer.Photino.csproj" />
+  </Folder>
+</Solution>
